@@ -1,6 +1,8 @@
 package com.tci.controller;
 
 import com.tci.dto.Customer;
+import com.tci.proxy.FakeService;
+import com.tci.proxy.Response;
 import com.tci.service.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -18,6 +20,9 @@ import org.slf4j.LoggerFactory;
 public class CustomerController {
 
     @Autowired
+    private FakeService fakeService;
+
+    @Autowired
     private Operation operation;
 
     private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
@@ -25,6 +30,9 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET)
     public HttpEntity<List<Customer>> list() {
+
+        Response response= fakeService.query();
+        logger.debug("Response:{}", response.toString());
 
         Customer c1=new Customer();
         c1.setEdad(operation.sumar(4,8));
