@@ -4,6 +4,7 @@ package com.tci.controller;
 import com.tci.Exception.CustomerNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.hateoas.VndErrors;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.Optional;
 
 @ControllerAdvice
-@RequestMapping(produces = "application/vnd.error+json")
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
+
+
+    @Value("${error.message01}")
+    private String message01;
 
     private static final Logger logger = LoggerFactory.getLogger(RestExceptionHandler.class);
 
@@ -34,7 +38,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<VndErrors> assertionRuntimeException(final IllegalArgumentException e) {
+    /*@ExceptionHandler({ NullPointerException.class,
+            NullPointerException1.class,NullPointerException2.class })*/
+    public ResponseEntity<VndErrors> assertionRuntimeException(final RuntimeException e) {
+        logger.error("Runtime error",e);
         return error(e, HttpStatus.INTERNAL_SERVER_ERROR, e.getLocalizedMessage());
 
     }

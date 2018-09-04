@@ -6,3 +6,7 @@ logging:
     com.tci.service: WARN
     com.tci.proxy: DEBUG
     #org.springframework.web: INFO
+
+
+error:
+  message01: Internal error
