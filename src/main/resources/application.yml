@@ -4,4 +4,5 @@ logging:
     root: INFO
     com.tci.controller: DEBUG
     com.tci.service: WARN
+    com.tci.proxy: DEBUG
     #org.springframework.web: INFO

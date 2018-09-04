@@ -3,6 +3,7 @@ package com.tci.controller;
 import com.tci.dto.Customer;
 import com.tci.proxy.FakeService;
 import com.tci.proxy.Response;
+import com.tci.service.CustomerService;
 import com.tci.service.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -25,24 +26,21 @@ public class CustomerController {
     @Autowired
     private Operation operation;
 
+    @Autowired
+    private CustomerService customerService;
+
     private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
 
     @RequestMapping(method = RequestMethod.GET)
     public HttpEntity<List<Customer>> list() {
 
-        Response response= fakeService.query();
-        logger.debug("Response:{}", response.toString());
 
-        Customer c1=new Customer();
-        c1.setEdad(operation.sumar(4,8));
-        Customer c2=new Customer();
-        Customer c3=new Customer();
 
-        List<Customer> list = new ArrayList<>();
-        list.add(c1);
-        list.add(c2);
-        list.add(c3);
+
+        /*Response response= fakeService.query();
+        logger.debug("Response:{}", response.toString());*/
+
 
         logger.debug("This is a debug message");
         logger.info("This is an info message");
@@ -52,16 +50,14 @@ public class CustomerController {
         logger.debug("list()");
 
 
-        return ResponseEntity.ok(list);
+        return ResponseEntity.ok(customerService.list());
 
     }
 
     @RequestMapping(method = RequestMethod.GET,path="/{id}")
-    public HttpEntity<Customer> findById(@PathVariable("id") String id) {
+    public HttpEntity<Customer> findById(@PathVariable("id") int id) {
 
-        Customer c1=new Customer();
-        c1.setId(1);
-        c1.setName(id);
+        Customer c1 = customerService.query(id);
 
         logger.debug("findById({1})",id);
 
