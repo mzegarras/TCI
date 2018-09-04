@@ -1,6 +1,8 @@
 package com.tci.controller;
 
 import com.tci.dto.Customer;
+import com.tci.service.Operation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,9 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("/customers")
 public class CustomerController {
 
+    @Autowired
+    private Operation operation;
+
     private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
 
@@ -22,6 +27,7 @@ public class CustomerController {
     public HttpEntity<List<Customer>> list() {
 
         Customer c1=new Customer();
+        c1.setEdad(operation.sumar(4,8));
         Customer c2=new Customer();
         Customer c3=new Customer();
 

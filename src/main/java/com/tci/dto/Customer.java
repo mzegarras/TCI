@@ -6,9 +6,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class Customer {
 
-    public int id;
-    public String name;
-    public String lastName;
+    private int id;
+    private String name;
+    private String lastName;
+    private int edad;
 
 
     public int getId() {
@@ -33,6 +34,14 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     @Override

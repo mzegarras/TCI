@@ -3,5 +3,5 @@ logging:
   level:
     root: INFO
     com.tci.controller: DEBUG
+    com.tci.service: WARN
     #org.springframework.web: INFO
-    #com.microsoft.azure.servicebus: ERROR
