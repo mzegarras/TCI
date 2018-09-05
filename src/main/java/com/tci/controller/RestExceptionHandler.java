@@ -31,6 +31,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return error(e, HttpStatus.NOT_FOUND, e.getId().toString());
     }
 
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<VndErrors> assertionException(final IllegalArgumentException e) {
         return error(e, HttpStatus.NOT_FOUND, e.getLocalizedMessage());
@@ -39,7 +40,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     /*@ExceptionHandler({ NullPointerException.class,
-            NullPointerException1.class,NullPointerException2.class })*/
+            NullPointerException1.class})*/
     public ResponseEntity<VndErrors> assertionRuntimeException(final RuntimeException e) {
         logger.error("Runtime error",e);
         return error(e, HttpStatus.INTERNAL_SERVER_ERROR, e.getLocalizedMessage());

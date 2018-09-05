@@ -11,6 +11,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     @Override
     public Customer query(int id) {
+        
         if(id==1){
             throw new CustomerNotFoundException(id);
         }
@@ -20,6 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
         c.setId(100);
         c.setLastName("Monzon");
         c.setName("Mossy");
+        //c.setError(-200);
         return null;
     }
 

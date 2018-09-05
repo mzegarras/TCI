@@ -38,9 +38,12 @@ public class CustomerController {
 
 
 
-        /*Response response= fakeService.query();
-        logger.debug("Response:{}", response.toString());*/
+        Response response= fakeService.query();
+        logger.debug("Response:{}", response.toString());
 
+
+        //System.out.print("error");
+        //e.message
 
         logger.debug("This is a debug message");
         logger.info("This is an info message");
